@@ -1,0 +1,63 @@
+:root {
+    --primary-color-base: #10B981;
+    --grey-900: #1C1C1C;
+    --grey-800: #1F2937;
+    --grey-700: #273549;
+    --grey-600: #D5D4D8;
+    --white: #FFF;
+    --heading: 'Karla', sans-serif;
+    --body: 'Inter', sans-serif;
+
+}
+
+body {
+    margin: 0 auto 0 auto;
+    padding: 50px 20px;
+    background: var(--grey-900);
+}
+
+h1 {
+    font-family: var(--heading);
+    font-size: 40px;
+    color: var(--white);
+    margin: 0;
+}
+.text-green {
+    color: var(--primary-color-base);
+}
+
+.sub-heading {
+    color: var(--white);
+    font-size: 20px;
+    font-family: var(--body);
+    margin: 12px 0 48px 0;
+    font-weight: lighter;
+}
+
+button {
+    display: block;
+    padding: 12px;
+    border-radius: 6px;
+    background: var(--primary-color-base);
+    color: var(--white);
+    border: none;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+input {
+    margin-top: 5px;
+    width: 400px;
+    background: var(--grey-800);
+}
+
+.password {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    background: var(--grey-700);
+    width: 200px;
+    height: 30px;
+    color: var(--primary-color-base);
+    border-radius: 5px;
+}

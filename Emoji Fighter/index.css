@@ -1,0 +1,26 @@
+body{
+    margin: 20px auto;
+    align-items: center;
+    border: 2px, solid, saddlebrown;
+}
+h1 {
+    font-family: cursive;
+    font-weight: bolder;
+    color: saddlebrown;
+}
+
+button {
+    color: white;
+    background: saddlebrown;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+#stage {
+    height: 200px;
+    background: none;
+}
