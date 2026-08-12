@@ -6,7 +6,7 @@ function createCardHTML({ propertyLocation, priceGBP, comment, image, roomsM2 })
 
     return `
         <section class="card">
-            <img src="properties/${images}"></img>
+            <img src="images/${image}">
             <div class="card-right">
                 <h2>${propertyLocation}</h2>
                 <h3>£${priceGBP.toLocaleString()}</h3>
@@ -17,14 +17,9 @@ function createCardHTML({ propertyLocation, priceGBP, comment, image, roomsM2 })
     `
 }
 
-function getPropertyHtml() {
-
+function getPropertyHtml(propertiesArr = [propertyPlaceholderObj]) {
+    return propertiesArr.map(createCardHTML).join('')
 }
 
-// Render out a card for each of the properties in the propertyForSaleArr array (in the 'properties folder').
-// Each card should have an Image, a property location, a PromiseRejectionEvent, a comment and the TOTAL property
-// size in square metres (each object has an array with the size in square metres of the individual rooms).
 
-
-
-document.getElementById('container').innerHTML = getPropertyHtml()
+document.getElementById('container').innerHTML = getPropertyHtml(propertyForSaleArr)
