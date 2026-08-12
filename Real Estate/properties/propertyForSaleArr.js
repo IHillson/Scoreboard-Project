@@ -8,7 +8,7 @@ const propertyForSaleArr = [
     },
     {
         propertyLocation: "Wirral, Liverpool",
-        priceGBP: "650000",
+        priceGBP: 650000,
         roomsM2: [18, 16, 15, 14, 17, 19, 9, 8],
         comment: "Astonishing view with a modern finish!",
         image: "desres.jpg"
@@ -22,7 +22,7 @@ const propertyForSaleArr = [
     },
     {
         propertyLocation: "Highlands, Scotland",
-        priceGBP: "550000",
+        priceGBP: 550000,
         roomsM2: [9, 13, 12],
         comment: "Lots of potential, snug, a must see!",
         image: "shed.jpg"
