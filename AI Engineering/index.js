@@ -1,4 +1,8 @@
+import { Projects } from 'openai/resources/admin/organization.js'
 import { dates } from './utils/dates.js'
+import OpenAI from 'openai'
+import 'dotenv/config'
+
 
 const tickersArr = []
 
@@ -41,7 +45,7 @@ async function fetchStockData() {
     loadingArea.style.display = 'flex'
     try {
         const stockData = await Promise.all(tickersArr.map(async (ticker) => {
-            const url = `https://api.polygon.io/v2/aggs/ticker$/{ticker}/range/1/day/${dates.startDate}/${dates.endDate}?apiKey=${process.env.POLYGON_API_KEY}`
+            const url = `https://api.polygon.io/v2/aggs/ticker$/{ticker}/range/1/day/${dates.startDate}/${dates.endDate}?apiKey=${config.POLYGON_API_KEY}`
             const response = await fetch(url)
             const data = await response.text()
             const status = await response.status
@@ -60,7 +64,21 @@ async function fetchStockData() {
 }
 
 async function fetchReport(data) {
-    /**AI goes here */
+    const openai = new OpenAI({
+        apiKey: config.OPENAI_API_KEY,
+        dangerouslyAllowBrowser: true
+    })
+    const messages = [
+        {   role: 'system', 
+            content: 'You are a helpful assistant that advises people on investment decisions.' },
+        {   role: 'user', 
+            content: `Please create a report advising on whether to buy or sell the shares based on the stock data: ${data} that comes in as a parameter` }
+    ]
+    const response = await openai.chat.completions.create({
+        model: 'gpt-4o-mini',
+        messages: messages
+    })
+    console.log(response.choices[0].message.content)
 }
 
 function renderReport(output) {
