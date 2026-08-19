@@ -1,0 +1,335 @@
+:root {
+    --purple-deep: #5B2A8C;
+    --pink-hot: #E0499A;
+    --cream: #FFF8ED;
+    --ink: #1A1420;
+    --green-lo: #7CF29C;
+    --green-hi: #3FD673;
+    --orange: #FF7A3D;
+    --gray-soft: #8A8194;
+
+    --border: 3px solid var(--ink);
+    --shadow-pop: 5px 5px 0 var(--ink);
+    --shadow-pop-sm: 3px 3px 0 var(--ink);
+    --radius: 18px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Nunito', sans-serif;
+    color: var(--ink);
+    background:
+        radial-gradient(circle at 15% 10%, rgba(255,255,255,0.10), transparent 40%),
+        linear-gradient(150deg, var(--purple-deep) 0%, #8A2F9C 45%, var(--pink-hot) 100%);
+    display: flex;
+    justify-content: center;
+    padding: 40px 16px;
+}
+
+.app {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+    text-align: center;
+    color: var(--cream);
+}
+
+.brand {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.1rem, 9vw, 2.7rem);
+    line-height: 1;
+}
+
+.brand-word {
+    -webkit-text-stroke: 1.5px var(--ink);
+    paint-order: stroke fill;
+}
+
+.brand-word.dodgy {
+    color: var(--orange);
+    transform: rotate(-4deg);
+}
+
+.brand-word.dave {
+    color: var(--cream);
+    transform: rotate(3deg);
+}
+
+.mascot {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    filter: drop-shadow(2px 3px 0 rgba(0,0,0,0.35));
+}
+
+.mascot .mascot-shadow { fill: rgba(0,0,0,0.18); }
+.mascot .hat { fill: var(--orange); stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
+.mascot .hat-badge { fill: var(--cream); stroke: var(--ink); stroke-width: 2; }
+.mascot .skull { fill: var(--cream); stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
+.mascot .eye { fill: var(--ink); }
+.mascot .pupil { fill: var(--cream); }
+.mascot .nose { fill: var(--ink); }
+
+.tagline {
+    margin: 4px 0 0;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+    letter-spacing: 0.03em;
+    -webkit-text-stroke: 1px var(--ink);
+}
+
+/* ---------- Panel shell ---------- */
+
+.panel {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.action-panel,
+.loading-panel,
+.output-panel {
+    width: 100%;
+    background: var(--cream);
+    border: var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-pop);
+    padding: 22px 20px;
+}
+
+.loading-panel,
+.output-panel {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+}
+
+/* ---------- Action panel ---------- */
+
+.instructions {
+    margin: 0 0 16px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.4;
+}
+
+#ticker-input-form label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--gray-soft);
+    margin-bottom: 6px;
+    transition: color 0.15s ease;
+}
+
+.input-row {
+    display: flex;
+    gap: 10px;
+}
+
+#ticker-input {
+    flex: 1;
+    min-width: 0;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.1rem;
+    padding: 12px 14px;
+    border: var(--border);
+    border-radius: 12px;
+    background: #fff;
+    color: var(--ink);
+}
+
+#ticker-input::placeholder {
+    color: #C8C0D4;
+    text-transform: lowercase;
+}
+
+#ticker-input:focus {
+    outline: 3px solid var(--pink-hot);
+    outline-offset: 1px;
+}
+
+.add-ticker-btn {
+    flex-shrink: 0;
+    width: 48px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--ink);
+    background: var(--orange);
+    border: var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow-pop-sm);
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.add-ticker-btn:hover {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 var(--ink);
+}
+
+.add-ticker-btn:active {
+    transform: translate(3px, 3px);
+    box-shadow: none;
+}
+
+.ticker-choice-display {
+    margin-top: 16px;
+    min-height: 52px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 8px;
+    padding: 12px;
+    border: 2px dashed #D8CFE3;
+    border-radius: 12px;
+}
+
+.ticker-choice-display:empty::before {
+    content: attr(data-empty-text);
+    color: var(--gray-soft);
+    font-style: italic;
+    font-size: 0.95rem;
+    margin: auto;
+}
+
+.ticker {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    background: var(--purple-deep);
+    color: var(--cream);
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    padding: 6px 14px;
+}
+
+.generate-report-btn {
+    width: 100%;
+    margin-top: 18px;
+    padding: 15px;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    background: linear-gradient(180deg, var(--green-lo), var(--green-hi));
+    border: var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow-pop);
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.1s ease;
+}
+
+.generate-report-btn:not(:disabled):hover {
+    transform: translate(2px, 2px);
+    box-shadow: 3px 3px 0 var(--ink);
+}
+
+.generate-report-btn:not(:disabled):active {
+    transform: translate(5px, 5px);
+    box-shadow: none;
+}
+
+.generate-report-btn:disabled {
+    filter: grayscale(0.6);
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.odds-note {
+    margin: 12px 0 0;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--gray-soft);
+}
+
+/* ---------- Loading panel ---------- */
+
+.spinner {
+    width: 34px;
+    height: 34px;
+    border: 4px solid #E4DCEF;
+    border-top-color: var(--pink-hot);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+#api-message {
+    margin: 0;
+    font-weight: 700;
+}
+
+/* ---------- Output panel ---------- */
+
+.output-panel p {
+    margin: 0;
+    line-height: 1.5;
+    font-weight: 600;
+}
+
+/* ---------- Footer ---------- */
+
+.disclaimer {
+    color: var(--cream);
+    opacity: 0.85;
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+.disclaimer p {
+    margin: 0;
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 380px) {
+    .brand {
+        font-size: 1.8rem;
+    }
+    .mascot {
+        width: 52px;
+        height: 52px;
+    }
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+    .spinner {
+        animation: none;
+    }
+    .add-ticker-btn,
+    .generate-report-btn {
+        transition: none;
+    }
+}
