@@ -1,7 +1,7 @@
 import { Projects } from 'openai/resources/admin/organization.js'
 import { dates } from './utils/dates.js'
 import OpenAI from 'openai'
-import 'dotenv/config'
+import  { config } from './config.js'
 
 
 const tickersArr = []
@@ -64,21 +64,43 @@ async function fetchStockData() {
 }
 
 async function fetchReport(data) {
-    const openai = new OpenAI({
-        apiKey: config.OPENAI_API_KEY,
-        dangerouslyAllowBrowser: true
-    })
     const messages = [
-        {   role: 'system', 
-            content: 'You are a helpful assistant that advises people on investment decisions.' },
-        {   role: 'user', 
-            content: `Please create a report advising on whether to buy or sell the shares based on the stock data: ${data} that comes in as a parameter` }
+        { 
+            role: 'system', 
+            content: 'You are a helpful assistant that advises people on investment decisions.' 
+        },
+        { 
+            role: 'user', 
+            content: `Here is recent daily price data for these tickers: ${JSON.stringify(data)}. Write the report described above.` 
+        }
     ]
-    const response = await openai.chat.completions.create({
-        model: 'gpt-4o-mini',
-        messages: messages
-    })
-    console.log(response.choices[0].message.content)
+    try {
+        const openai = new OpenAI({
+            dangerouslyAllowBrowser: true
+        })
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${config.OPENAI_API_KEY}`
+            },
+            body: JSON.stringify({
+                model: 'gpt-4o-mini',
+                
+            })
+        })
+ 
+        if (!response.ok) {
+            throw new Error(`OpenAI request failed with status ${response.status}`)
+        }
+        const result = await response.json()
+        const output = result.choices[0].message.content
+
+        renderReport(output)
+    } catch(err) {
+        loadingArea.innerText = 'There was an error fetching the report.'
+        console.error('error: ', err)
+    }
 }
 
 function renderReport(output) {
