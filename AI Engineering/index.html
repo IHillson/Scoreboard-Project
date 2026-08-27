@@ -37,8 +37,7 @@
 
                 <section class="action-panel">
                     <p class="instructions">
-                        You must add at least one ticker. A ticker is a 3 letter or more code for a
-                        stock. E.g <strong>TSLA</strong> for Tesla.
+                        Add up to 3 stock tickers below to get a super accurate stock prediction report
                     </p>
 
                     <form id="ticker-input-form" novalidate>
@@ -60,7 +59,7 @@
 
                     <div class="ticker-choice-display" data-empty-text="Your tickers will appear here…"></div>
 
-                    <button type="button" class="generate-report-btn" disabled>Generate Report</button>
+                    <button onclick="fetchStockData()" type="button" class="generate-report-btn" disabled>Generate Report</button>
 
                     <p class="odds-note">Always correct 15% of the time!</p>
                 </section>

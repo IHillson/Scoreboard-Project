@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ARTMATCH</title>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <div id="img-container">
+            <div id="instruction">
+                <h2>Describe a famous painting without saying its name or the artist!</h2>
+            </div>
+            <div id="output-img">
+                <h2>AI's Guess:</h2>
+                <div id="ai-guess"></div>
+            </div>
+            </div>
+        </div>
+        <div id="input-container">
+            <input type="text" id="painting-description" placeholder="Describe a painting here..." />
+        </div>
+        <button onclick="generateImage()" id="submit-btn">SUBMIT</button>
+
+        <script type="module" src="index.js"></script>
+    </body>
+</html>

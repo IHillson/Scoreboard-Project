@@ -67,39 +67,28 @@ async function fetchReport(data) {
     const messages = [
         { 
             role: 'system', 
-            content: 'You are a helpful assistant that advises people on investment decisions.' 
+            content: 'You are a trading guru. Given data on share prices over the past three days. Write a report of no more than 150 words describing the stocks performance and recommending whether to buy, hold or sell.' 
         },
         { 
             role: 'user', 
-            content: `Here is recent daily price data for these tickers: ${JSON.stringify(data)}. Write the report described above.` 
+            content: data 
         }
     ]
     try {
         const openai = new OpenAI({
             dangerouslyAllowBrowser: true
         })
-        const response = await fetch('https://api.openai.com/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${config.OPENAI_API_KEY}`
-            },
-            body: JSON.stringify({
-                model: 'gpt-4o-mini',
-                
-            })
+        const response = await openai.chat.completions.create({
+            model: 'gpt-4o-mini',
+            messages: messages,
+            temperature: 1.1,
+            presence_penalty: 0.5,
+            frequency_penalty: 0.5,
+            max_tokens: 150
         })
- 
-        if (!response.ok) {
-            throw new Error(`OpenAI request failed with status ${response.status}`)
-        }
-        const result = await response.json()
-        const output = result.choices[0].message.content
-
-        renderReport(output)
     } catch(err) {
-        loadingArea.innerText = 'There was an error fetching the report.'
-        console.error('error: ', err)
+        loadingArea.innerText = 'Unable to access AI. Please refresh and try again.'
+        console.error('Error: ', err)
     }
 }
 
