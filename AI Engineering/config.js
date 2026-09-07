@@ -1,0 +1,4 @@
+export const config = {
+    POLYGON_API_KEY: 'faEHW1GwIOEze3hEzFE2t27k5xhLnafD',
+    OPENAI_API_KEY: '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'
+}

@@ -1,17 +1,19 @@
 {
-  "name": "hillson's-repositories",
+  "name": "wild-horizons",
   "version": "1.0.0",
-  "description": "",
+  "description": "a dataset of the planet's most interesting places",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/IHillson/Scoreboard-Project.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Austine",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/IHillson/Scoreboard-Project/issues"
@@ -20,5 +22,6 @@
   "dependencies": {
     "dotenv": "^17.4.2",
     "openai": "^7.5.0"
-  }
+  },
+  "devDependencies": {}
 }
