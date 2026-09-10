@@ -19,7 +19,7 @@ const server = http.createServer(async (req, res) => {
         
         console.log(queryObj)
         
-        filteredDestinations = getDataByQueryParams(destinations, queryObj.locationType, queryObj.locationName, queryObj.status)
+        filteredDestinations = getDataByQueryParams(destinations, queryObj)
 
         sendJSONResponse(res, 200, filteredDestinations)
 

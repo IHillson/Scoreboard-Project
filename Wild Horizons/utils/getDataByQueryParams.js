@@ -1,7 +1,22 @@
 export const getDataByQueryParams = (data, locationType, locationName, status) => {
-    return data.filter(destination => {
-        const locationMatch = destination[locationType].toLowerCase() === locationName.toLowerCase();
-        const statusMatch = status ? destination.is_open_to_public === (status.toLowerCase() === "true") : true;
-        return locationMatch && statusMatch;
-    })
+    const { continent, country, is_open_to_public } = queryObj
+
+    if (continent) {
+        data = data.filter(destination =>
+            destination.continent.toLowerCase() === continent.toLowerCase()
+        )
+    }
+
+    if (country) {
+        data = data.filter(destination =>
+            destination.country.toLowerCase() === country.toLowerCase()
+        )
+    }
+
+    if (is_open_to_public) {
+        data = data.filter(destination =>
+            destination.is_open_to_public === JSON.parse(is_open_to_public.toLowerCase())
+        )
+    }
+    return data
 }
