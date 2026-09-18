@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sightings — From The Other Side</title>
+  <meta name="description" content="Real accounts of paranormal sightings, reported by the people who saw them." />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="read">
+  <div class="frame">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="From The Other Side — home">
+        <svg class="brand__candle" viewBox="0 0 24 32" aria-hidden="true">
+          <path d="M11 2c0 1.5-2 2.5-2 4.5S10.5 9 11 9s2-1 2-2.5S11 4 11 2z" />
+          <rect x="9.5" y="9" width="3" height="18" rx="1" />
+          <rect x="6" y="27" width="12" height="4" rx="1" />
+        </svg>
+      </a>
+      <nav class="primary-nav" aria-label="Primary">
+        <a href="index.html" data-nav="home">Home</a>
+        <a href="read.html" data-nav="read">Read</a>
+        <a href="upload.html" data-nav="upload">Upload</a>
+      </nav>
+    </header>
+
+    <div class="page-head">
+      <p class="page-head__eyebrow">From the Other Side</p>
+      <h1 class="page-head__title">Sightings</h1>
+    </div>
+
+    <main>
+      <ul id="sightings-list" class="sightings-list">
+        <li class="state-message">Loading sightings…</li>
+      </ul>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; <span id="year"></span> From The Other Side. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script type="module" src="js/nav.js"></script>
+  <script type="module" src="js/read.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

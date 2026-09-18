@@ -1,0 +1,377 @@
+/* ==========================================================================
+   From The Other Side — shared stylesheet
+   Tokens first, then layout, then components, then page-specific rules.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Butcherman&family=Special+Elite&display=swap");
+
+:root {
+  /* Color */
+  --void: #0a0a0c;          /* main background — the dark between sightings */
+  --void-raised: #131316;   /* slightly lifted panels on the dark bg */
+  --card: #efe8d8;          /* aged-paper card background */
+  --ink: #241f18;           /* text on paper cards */
+  --ink-soft: #524a3c;      /* secondary text on paper */
+  --bone: #f3efe4;          /* primary text on dark */
+  --bone-soft: #b9b3a4;     /* secondary text on dark */
+  --fog: #d9d4c4;           /* the thin frame border, and rules */
+  --ecto: #6f9c8d;          /* ectoplasm green — links, focus, accents */
+  --ecto-bright: #8fc4b3;
+  --warning: #b3543f;       /* form errors only — used sparingly */
+
+  /* Type */
+  --font-display: "Butcherman", "Georgia", serif;
+  --font-body: "Special Elite", "Courier New", monospace;
+
+  /* Layout */
+  --frame-width: 640px;
+  --gap: 1.5rem;
+}
+
+/* Reset ------------------------------------------------------------------ */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { color-scheme: dark; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--void);
+  font-family: var(--font-body);
+  color: var(--bone);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; }
+
+button { font-family: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--ecto-bright);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Frame -------------------------------------------------------------------
+   The whole site sits inside a bordered "window" — a card, floating in
+   the dark, like a page torn out of someone else's world.
+   -------------------------------------------------------------------- */
+.frame {
+  max-width: var(--frame-width);
+  margin: clamp(1rem, 4vw, 2.5rem) auto;
+  border: 3px solid var(--fog);
+  border-radius: 28px;
+  background: var(--void) center / cover no-repeat;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.4),
+    0 30px 80px rgba(0, 0, 0, 0.65);
+  overflow: hidden;
+}
+
+/* Per-page background photos — the dark gradient keeps text on top
+   readable over whatever the photo is doing underneath it. */
+body[data-page="home"].frame {
+  background-image:
+    linear-gradient(180deg, rgba(8, 10, 9, 0.35) 0%, rgba(8, 10, 9, 0.9) 85%),
+    url("./images/home.jpeg");
+}
+
+body[data-page="read"].frame {
+  background-image:
+    linear-gradient(180deg, rgba(6, 8, 14, 0.55) 0%, rgba(6, 8, 14, 0.92) 60%),
+    url("./images/read.jpeg");
+}
+
+body[data-page="upload"].frame {
+  background-image:
+    linear-gradient(180deg, rgba(8, 8, 8, 0.6) 0%, rgba(8, 8, 8, 0.92) 60%),
+    url("./images/upload.jpeg");
+}
+
+/* Header / nav ------------------------------------------------------------ */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.75rem;
+  background: rgba(8, 8, 10, 0.35);
+  backdrop-filter: blur(2px);
+  border-bottom: 1px solid rgba(217, 212, 196, 0.15);
+}
+
+.brand {
+  display: flex;
+  text-decoration: none;
+  color: var(--bone);
+}
+
+.brand__candle {
+  width: 22px;
+  height: 30px;
+  fill: var(--bone-soft);
+}
+
+.primary-nav {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.primary-nav a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  color: var(--bone-soft);
+  transition: color 0.15s ease;
+}
+
+.primary-nav a:hover { color: var(--bone); }
+
+.primary-nav a[aria-current="page"] {
+  color: var(--ecto-bright);
+  text-decoration-color: var(--ecto-bright);
+}
+
+/* Page heading block -------------------------------------------------- */
+.page-head {
+  padding: 0.75rem 1.75rem 1.5rem;
+  text-align: center;
+}
+
+.page-head__eyebrow {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  color: var(--bone-soft);
+  margin: 0 0 0.25rem;
+}
+
+.page-head__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.75rem, 6vw, 2.4rem);
+  line-height: 1.15;
+  margin: 0;
+  color: var(--bone);
+}
+
+.page-head__eyebrow,
+.page-head__title {
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+/* Home ---------------------------------------------------------------- */
+.hero {
+  padding: 2.5rem 1.75rem 3rem;
+  text-align: center;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 9vw, 3.4rem);
+  line-height: 1.05;
+  margin: 0 0 1.5rem;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.85);
+}
+
+.hero__tagline {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1rem, 3.4vw, 1.3rem);
+  line-height: 1.5;
+  color: var(--bone-soft);
+  max-width: 26ch;
+  margin: 0 auto 2rem;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85);
+}
+
+.hero__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  border: 1px solid var(--fog);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--bone);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.button:hover {
+  border-color: var(--ecto-bright);
+  color: var(--ecto-bright);
+}
+
+.button--primary {
+  background: var(--ecto);
+  border-color: var(--ecto);
+  color: var(--void);
+}
+
+.button--primary:hover {
+  background: var(--ecto-bright);
+  border-color: var(--ecto-bright);
+  color: var(--void);
+}
+
+.button[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.site-footer {
+  padding: 1.25rem 1.75rem 1.75rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--bone-soft);
+  background: rgba(8, 8, 10, 0.35);
+  opacity: 0.85;
+}
+
+/* Sightings list (Read page) ------------------------------------------ */
+.sightings-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: rgba(217, 212, 196, 0.15);
+}
+
+.sighting-card {
+  background: var(--card);
+  color: var(--ink);
+  padding: 1.25rem 1.4rem;
+}
+
+.sighting-card__meta {
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  margin: 0 0 0.5rem;
+}
+
+.sighting-card__title {
+  font-size: 1.05rem;
+  margin: 0 0 0.6rem;
+}
+
+.sighting-card__excerpt {
+  margin: 0;
+  line-height: 1.6;
+  font-size: 0.92rem;
+}
+
+.sighting-card__excerpt[hidden] { display: none; }
+
+.sighting-card__toggle {
+  display: block;
+  margin-top: 0.75rem;
+  margin-left: auto;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  text-decoration: underline;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.sighting-card__toggle:hover { color: var(--ink); }
+
+.state-message {
+  padding: 2rem 1.75rem;
+  text-align: center;
+  color: var(--bone-soft);
+  line-height: 1.6;
+}
+
+.state-message--error { color: var(--warning); }
+
+/* Upload form ----------------------------------------------------------- */
+.sighting-form {
+  padding: 0.5rem 1.75rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field label {
+  font-size: 0.85rem;
+  color: var(--bone-soft);
+}
+
+.field input,
+.field textarea {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 0.65rem 0.75rem;
+  border: none;
+  border-radius: 4px;
+  background: var(--card);
+  color: var(--ink);
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--ink-soft);
+  opacity: 0.7;
+}
+
+.field textarea {
+  min-height: 9rem;
+  resize: vertical;
+}
+
+.field--error input,
+.field--error textarea {
+  outline: 2px solid var(--warning);
+}
+
+.field__error {
+  font-size: 0.8rem;
+  color: var(--warning);
+  min-height: 1em;
+}
+
+.form-status {
+  min-height: 1.2em;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.form-status[data-tone="success"] { color: var(--ecto-bright); }
+.form-status[data-tone="error"] { color: var(--warning); }
+
+.sighting-form__submit {
+  align-self: flex-start;
+}

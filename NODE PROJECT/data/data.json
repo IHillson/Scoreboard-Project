@@ -1,0 +1,26 @@
+[
+    {
+        "uuid": "a9fic6e5-9383-4012-b28d-734c9378f861",
+        "location": "Exeter, UK",
+        "timeStamp": "18 August 2025 at 7:30 PM",
+        "title": "The Phantom Warning",
+        "text": "I was drifting through town, lost in thought, when a sudden chill ran down my spine. A piercing shriek sliced through the air, and I turned to see a shadowy figure darting across the street. My heart raced as I realized I was being followed. The figure vanished into the night, leaving me with an eerie sense of foreboding. I still feel the phantom warning in my bones, urging me to stay vigilant. The streets are not as safe as they seem, and I can't shake the feeling that something sinister is lurking just out of sight.",
+        "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+    },
+    {
+        "uuid": "47e32f3c-1e4b-4d5a-9f8e-2c6b7e5a1f3d",
+        "location": "Edinburgh, UK",
+        "timeStamp": "20 March 2025 at 9:15 AM",
+        "title": "The Pianist's Lament",
+        "text": "We wandered into the skeleton of an abandoned theater, its air thick with forgotten breath. As we crept through its crumbling halls, a piano melody began to drift-low, haunting, and sorrowful. The notes seemed to echo the pain of a long-lost soul, and we felt a chill as if the music itself was mourning. We followed the sound to the stage, where a lone piano sat, its keys moving as if played by invisible hands. The lamenting tune filled the theater, and we realized that some stories are never truly forgotten, lingering in the echoes of time. Then a man appeared, his eyes hollow, and he whispered, 'The music never dies, but it can consume you.' We fled, the melody chasing us into the night. Later, I learned of the pianist who perished mid-performance, still searching for his final ovation.",
+        "image": "https://images.unsplash.com/photo-14974205-1e3f0b8c9d4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+    },
+    {
+        "uuid": "b83cb7e0-df38-b53d-2616175ea5f9",
+        "location": "Dunwich, UK",
+        "timeStamp": "15 June 2025 at 3:45 PM",
+        "title": "The Vanishing Alley",
+        "text": "We stumbled upon a narrow alley that seemed to stretch into the void. The walls were covered in ivy, and the air was thick with the scent of decay. As we ventured deeper, the shadows began to move, and we heard whispers that seemed to come from the very stones themselves. The alley appeared to shift and change with each step, leading us further into its depths. Suddenly, the world around us vanished, and we found ourselves standing in a place that defied logic. The alley had consumed us, leaving only echoes of our presence.",
+        "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+    }
+]
