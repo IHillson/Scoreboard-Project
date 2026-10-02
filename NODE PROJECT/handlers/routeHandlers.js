@@ -1,8 +1,9 @@
 import { getData } from "../utils/getData.js"
 import { sendResponse } from "../utils/sendResponse.js"
 import { parseJSONBody } from "../utils/parseJSONBody.js"
-import { sanitizeData } from "../utils/sanitizeData.js"
 import { addNewSighting } from "../utils/addNewSighting.js"
+import { sanitizeInput } from "../utils/sanitizeInput.js"
+import { sightingEvents } from "../events/sightingEvents.js"
 
 //handleGet
 export async function handleGet(res) {
@@ -15,11 +16,12 @@ export async function handleGet(res) {
 export async function handlePost(req, res) {
     try {
         const parsedBody = await parseJSONBody(req)
-        await addNewSighting(parsedBody)
-        sendResponse(res, 201, "application/json", JSON.stringify(parsedBody))
+        const sanitizedBody = sanitizeInput(parsedBody)
+        await addNewSighting(sanitizedBody)
+        sightingEvents.emit("sighting-added", sanitizedBody)
+        sendResponse(res, 201, "application/json", JSON.stringify(sanitizedBody))
     } catch(err) {
         sendResponse(res, 400, "application/json", JSON.stringify({error: err}))
     }
-    const sanitizedData = sanitizeData(parsedBody)
     // Implementation for handling POST requests
 }
